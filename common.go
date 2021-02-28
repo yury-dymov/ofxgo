@@ -40,7 +40,7 @@ NEWFILEUID:` + newFileUUIDValue + `
 			b.WriteByte('\r')
 		}
 		b.WriteByte('\n')
-		b.WriteString(`<?OFX OFXHEADER="200" VERSION="` + v.String() + `" SECURITY="NONE" OLDFILEUID="NONE" NEWFILEUID="NONE"?>`)
+		b.WriteString(`<?OFX OFXHEADER="200" VERSION="` + v.String() + `" SECURITY="NONE" OLDFILEUID="NONE" NEWFILEUID="` + newFileUUIDValue + `"?>`)
 		if carriageReturn {
 			b.WriteByte('\r')
 		}
