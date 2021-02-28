@@ -3,8 +3,9 @@ package ofxgo
 import (
 	"bytes"
 	"errors"
-	"github.com/aclindsa/xml"
 	"time"
+
+	"github.com/aclindsa/xml"
 )
 
 // Request is the top-level object marshalled and sent to OFX servers. It is
@@ -13,23 +14,24 @@ import (
 // statemement). If a *Request object is appended to the wrong message set, an
 // error will be returned when Marshal() is called on this Request.
 type Request struct {
-	URL        string
-	Version    ofxVersion    // OFX version, overwritten in Client.Request()
-	Signon     SignonRequest //<SIGNONMSGSETV1>
-	Signup     []Message     //<SIGNUPMSGSETV1>
-	Bank       []Message     //<BANKMSGSETV1>
-	CreditCard []Message     //<CREDITCARDMSGSETV1>
-	Loan       []Message     //<LOANMSGSETV1>
-	InvStmt    []Message     //<INVSTMTMSGSETV1>
-	InterXfer  []Message     //<INTERXFERMSGSETV1>
-	WireXfer   []Message     //<WIREXFERMSGSETV1>
-	Billpay    []Message     //<BILLPAYMSGSETV1>
-	Email      []Message     //<EMAILMSGSETV1>
-	SecList    []Message     //<SECLISTMSGSETV1>
-	PresDir    []Message     //<PRESDIRMSGSETV1>
-	PresDlv    []Message     //<PRESDLVMSGSETV1>
-	Prof       []Message     //<PROFMSGSETV1>
-	Image      []Message     //<IMAGEMSGSETV1>
+	URL         string
+	Version     ofxVersion    // OFX version, overwritten in Client.Request()
+	Signon      SignonRequest //<SIGNONMSGSETV1>
+	Signup      []Message     //<SIGNUPMSGSETV1>
+	Bank        []Message     //<BANKMSGSETV1>
+	CreditCard  []Message     //<CREDITCARDMSGSETV1>
+	Loan        []Message     //<LOANMSGSETV1>
+	InvStmt     []Message     //<INVSTMTMSGSETV1>
+	InterXfer   []Message     //<INTERXFERMSGSETV1>
+	WireXfer    []Message     //<WIREXFERMSGSETV1>
+	Billpay     []Message     //<BILLPAYMSGSETV1>
+	Email       []Message     //<EMAILMSGSETV1>
+	SecList     []Message     //<SECLISTMSGSETV1>
+	PresDir     []Message     //<PRESDIRMSGSETV1>
+	PresDlv     []Message     //<PRESDLVMSGSETV1>
+	Prof        []Message     //<PROFMSGSETV1>
+	Image       []Message     //<IMAGEMSGSETV1>
+	NewFileUUID string        //<NewFileUUID>
 
 	indent         bool // Whether to indent the marshaled XML
 	carriageReturn bool // Whether to user carriage returns in new lines for marshaled XML
@@ -81,7 +83,7 @@ func (oq *Request) Marshal() (*bytes.Buffer, error) {
 	var b bytes.Buffer
 
 	// Write the header appropriate to our version
-	writeHeader(&b, oq.Version, oq.carriageReturn)
+	writeHeader(&b, oq.Version, oq.carriageReturn, oq.NewFileUUID)
 
 	encoder := xml.NewEncoder(&b)
 	if oq.indent {

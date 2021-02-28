@@ -415,7 +415,7 @@ func (or *Response) Marshal() (*bytes.Buffer, error) {
 	var b bytes.Buffer
 
 	// Write the header appropriate to our version
-	writeHeader(&b, or.Version, false)
+	writeHeader(&b, or.Version, false, "")
 
 	encoder := xml.NewEncoder(&b)
 	encoder.Indent("", "    ")

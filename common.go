@@ -11,8 +11,12 @@ import (
 	"github.com/aclindsa/xml"
 )
 
-func writeHeader(b *bytes.Buffer, v ofxVersion, carriageReturn bool) error {
+func writeHeader(b *bytes.Buffer, v ofxVersion, carriageReturn bool, newFileUUID string) error {
 	// Write the header appropriate to our version
+	newFileUUIDValue := "NONE"
+	if newFileUUID != "" {
+		newFileUUIDValue = newFileUUID
+	}
 	switch v {
 	case OfxVersion102, OfxVersion103, OfxVersion151, OfxVersion160:
 		header := `OFXHEADER:100
@@ -23,7 +27,7 @@ ENCODING:USASCII
 CHARSET:1252
 COMPRESSION:NONE
 OLDFILEUID:NONE
-NEWFILEUID:NONE
+NEWFILEUID:` + newFileUUIDValue + `
 
 `
 		if carriageReturn {
