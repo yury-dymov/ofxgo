@@ -3,9 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/aclindsa/ofxgo"
 	"os"
 	"time"
+
+	"github.com/yury-dymov/ofxgo"
 )
 
 var getAccountsCommand = command{

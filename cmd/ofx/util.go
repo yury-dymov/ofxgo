@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/aclindsa/ofxgo"
 	"os"
+
+	"github.com/yury-dymov/ofxgo"
 )
 
 func newRequest() (ofxgo.Client, *ofxgo.Request) {

@@ -3,9 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/aclindsa/ofxgo"
 	"io"
 	"os"
+
+	"github.com/yury-dymov/ofxgo"
 )
 
 var invDownloadCommand = command{
