@@ -1,4 +1,4 @@
-module github.com/aclindsa/ofxgo
+module github.com/yury-dymov/ofxgo
 
 require (
 	github.com/aclindsa/xml v0.0.0-20190701095008-453d2c6090c2
