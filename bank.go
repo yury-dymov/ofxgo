@@ -2,6 +2,7 @@ package ofxgo
 
 import (
 	"errors"
+
 	"github.com/aclindsa/xml"
 )
 

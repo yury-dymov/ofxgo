@@ -97,9 +97,10 @@ const (
 	AcctTypeMoneyMrkt
 	AcctTypeCreditLine
 	AcctTypeCD
+	AcctTypeCC
 )
 
-var acctTypes = [...]string{"CHECKING", "SAVINGS", "MONEYMRKT", "CREDITLINE", "CD"}
+var acctTypes = [...]string{"CHECKING", "SAVINGS", "MONEYMRKT", "CREDITLINE", "CD", "CC"}
 
 func (e AcctType) Valid() bool {
 	// This check is mostly out of paranoia, ensuring e != 0 should be
