@@ -314,7 +314,7 @@ type BankAcct struct {
 	BankID   String   `xml:"BANKID"`
 	BranchID String   `xml:"BRANCHID,omitempty"` // Unused in USA
 	AcctID   String   `xml:"ACCTID"`
-	AcctType acctType `xml:"ACCTTYPE"`          // One of CHECKING, SAVINGS, MONEYMRKT, CREDITLINE, CD
+	AcctType AcctType `xml:"ACCTTYPE"`          // One of CHECKING, SAVINGS, MONEYMRKT, CREDITLINE, CD
 	AcctKey  String   `xml:"ACCTKEY,omitempty"` // Unused in USA
 }
 

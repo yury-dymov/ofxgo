@@ -88,11 +88,11 @@ func NewOfxVersion(s string) (ofxVersion, error) {
 	return e, nil
 }
 
-type acctType uint
+type AcctType uint
 
 // AcctType* constants represent types of bank accounts
 const (
-	AcctTypeChecking acctType = 1 + iota
+	AcctTypeChecking AcctType = 1 + iota
 	AcctTypeSavings
 	AcctTypeMoneyMrkt
 	AcctTypeCreditLine
@@ -101,25 +101,25 @@ const (
 
 var acctTypes = [...]string{"CHECKING", "SAVINGS", "MONEYMRKT", "CREDITLINE", "CD"}
 
-func (e acctType) Valid() bool {
+func (e AcctType) Valid() bool {
 	// This check is mostly out of paranoia, ensuring e != 0 should be
 	// sufficient
 	return e >= AcctTypeChecking && e <= AcctTypeCD
 }
 
-func (e acctType) String() string {
+func (e AcctType) String() string {
 	if e.Valid() {
 		return acctTypes[e-1]
 	}
 	return fmt.Sprintf("invalid acctType (%d)", e)
 }
 
-func (e *acctType) FromString(in string) error {
+func (e *AcctType) FromString(in string) error {
 	value := strings.TrimSpace(in)
 
 	for i, s := range acctTypes {
 		if s == value {
-			*e = acctType(i + 1)
+			*e = AcctType(i + 1)
 			return nil
 		}
 	}
@@ -127,7 +127,7 @@ func (e *acctType) FromString(in string) error {
 	return errors.New("Invalid AcctType: \"" + in + "\"")
 }
 
-func (e *acctType) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+func (e *AcctType) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	var value string
 	err := d.DecodeElement(&value, &start)
 	if err != nil {
@@ -137,7 +137,7 @@ func (e *acctType) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	return e.FromString(value)
 }
 
-func (e *acctType) MarshalXML(enc *xml.Encoder, start xml.StartElement) error {
+func (e *AcctType) MarshalXML(enc *xml.Encoder, start xml.StartElement) error {
 	if !e.Valid() {
 		return nil
 	}
@@ -147,8 +147,8 @@ func (e *acctType) MarshalXML(enc *xml.Encoder, start xml.StartElement) error {
 
 // NewAcctType returns returns an 'enum' value of type acctType given its
 // string representation
-func NewAcctType(s string) (acctType, error) {
-	var e acctType
+func NewAcctType(s string) (AcctType, error) {
+	var e AcctType
 	err := e.FromString(s)
 	if err != nil {
 		return 0, err
